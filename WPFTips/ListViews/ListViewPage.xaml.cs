@@ -13,12 +13,12 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace WPFTips {
+namespace WPFTips.ListViews {
     /// <summary>
-    /// MainWindow.xaml の相互作用ロジック
+    /// ListViewPage.xaml の相互作用ロジック
     /// </summary>
-    public partial class MainWindow : NavigationWindow {
-        public MainWindow() {
+    public partial class ListViewPage : Page {
+        public ListViewPage() {
             InitializeComponent();
         }
     }
