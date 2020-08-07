@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Prism.Commands;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,14 +13,19 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using WPFTips.ListViews;
 
 namespace WPFTips {
     /// <summary>
-    /// MainWindow.xaml の相互作用ロジック
+    /// MainPage.xaml の相互作用ロジック
     /// </summary>
-    public partial class MainWindow : NavigationWindow {
-        public MainWindow() {
+    public partial class MainPage : Page {
+        public MainPage() {
             InitializeComponent();
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e) {
+            this.NavigationService.Navigate(new ListViewPage());
         }
     }
 }
