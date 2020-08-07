@@ -8,7 +8,7 @@ namespace WPFTips.ListViews {
     class ListViewWindowViewModel : BindableBase{
 
 
-        private List<String> stringList = new List<String>(new string[] { "element1", "element2", "element3", "eelement4" });
+        private List<String> stringList = new List<String>(new string[] { "element1", "element2", "element3", "element4" });
 
         public List<String> StringList {
             get => stringList;

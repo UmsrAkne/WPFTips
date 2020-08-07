@@ -13,5 +13,24 @@
     </Page.DataContext>
 
     <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <ListView ItemsSource="{Binding StringList}">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="デフォルトのListView">
+                    </GridViewColumn>
+                </GridView>
+            </ListView.View>
+        </ListView>
+
+        
     </Grid>
 </Page>
