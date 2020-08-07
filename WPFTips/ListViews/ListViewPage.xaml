@@ -4,6 +4,7 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:WPFTips.ListViews"
+      xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="ListViewPage">
@@ -50,7 +51,26 @@
                         <Setter.Value>
                             <ControlTemplate TargetType="ListViewItem">
                                 <ContentControl>
-                                    
+
+                                    <!-- ダブルクリックした ListViewItem を取得するためのコード。
+                                         ControlTemplate 内からは、当然のように ListView やデータコンテキストにアクセスすることができないため、
+                                         内側から　RelativeSource で page や window までさかのぼり、データコンテキストを見つけてコマンドを実行。
+                                         同じように実行時には上方に存在するであろう ListViewItem を探してパラメータに渡す。
+                                         信じられないほどまわりくどい。もっとスマートな方法はないんだろうか？
+
+                                         尚、ヘッダーや空白部のクリックが反応しても構わないなら ListView から直接ダブルクリックでイベントを拾える。
+                                         xaml で直接 ListViewItem を宣言している場合も（試してないけど多分）もっとスマートなコードになると思う。
+                                         このコードでは ListView.ItemsSource に List をバインドしているので無理。
+                                    -->
+                                    <i:Interaction.Triggers>
+                                        <i:EventTrigger EventName="MouseDoubleClick">
+                                            <i:InvokeCommandAction Command="{Binding RelativeSource={RelativeSource AncestorType=Page},
+                                                Path=DataContext.DoubleClickCommand }"
+                                                                   CommandParameter="{Binding RelativeSource={RelativeSource AncestorType=ListViewItem}}"
+                                                                   />
+                                        </i:EventTrigger>
+                                    </i:Interaction.Triggers>
+
                                     <Border x:Name="Border"
                                               Padding="2"
                                               SnapsToDevicePixels="true"
