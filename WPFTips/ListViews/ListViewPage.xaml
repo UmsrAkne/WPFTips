@@ -31,6 +31,76 @@
             </ListView.View>
         </ListView>
 
+        <ListView ItemsSource="{Binding StringList}"
+                  Grid.Column="1"
+                  >
+
+            <!-- ItemContainerStyle を再定義。コード量自体は多いが、難しい処理ではない。
+                 自分がこのコードを書く理由は、大半がマウスオーバー時に項目の色が変化するのを無効にしたい場合。
+                 これだけ大掛かりなコードを書かないと無効にできない。この動作そんなに重要なんだろうか？
+                 複数箇所でリストビューを使う場合は リソースで別途定義したりして共通化させる。 -->
+
+            <ListView.ItemContainerStyle>
+                <Style TargetType="ListViewItem">
+                    <Setter Property="SnapsToDevicePixels"
+                            Value="true" />
+                    <Setter Property="OverridesDefaultStyle"
+                            Value="true" />
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="ListBoxItem">
+                                <Border x:Name="Border"
+                                          Padding="2"
+                                          SnapsToDevicePixels="true"
+                                          Background="Transparent">
+
+                                    <VisualStateManager.VisualStateGroups>
+                                        <VisualStateGroup x:Name="CommonStates">
+                                            <VisualState x:Name="Normal" />
+                                            <VisualState x:Name="MouseOver" />
+                                            <VisualState x:Name="Disabled" />
+                                        </VisualStateGroup>
+
+                                        <VisualStateGroup x:Name="SelectionStates">
+                                            <VisualState x:Name="Unselected" />
+                                            <VisualState x:Name="Selected">
+                                                <Storyboard>
+                                                    <ColorAnimationUsingKeyFrames Storyboard.TargetName="Border"
+                                                                                  Storyboard.TargetProperty="(Panel.Background).  (SolidColorBrush.Color)">
+                                                        <EasingColorKeyFrame KeyTime="0"
+                                                                             Value="Red" />
+                                                    </ColorAnimationUsingKeyFrames>
+                                                </Storyboard>
+                                            </VisualState>
+
+                                        <VisualState x:Name="SelectedUnfocused">
+                                            <Storyboard>
+                                                <ColorAnimationUsingKeyFrames Storyboard.TargetName="Border"
+                                                                              Storyboard.TargetProperty="(Panel.Background).  (SolidColorBrush.Color)">
+                                                    <EasingColorKeyFrame KeyTime="0"
+                                                                         Value="Red" />
+                                                </ColorAnimationUsingKeyFrames>
+                                            </Storyboard>
+                                        </VisualState>
+
+                                        </VisualStateGroup>
+                                    </VisualStateManager.VisualStateGroups>
+                                    <GridViewRowPresenter VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
+                                </Border>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+
+            </ListView.ItemContainerStyle>
+
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="コントロールテンプレートを再定義したListView"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
+
         
     </Grid>
 </Page>
