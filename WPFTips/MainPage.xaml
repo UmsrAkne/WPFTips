@@ -24,5 +24,11 @@
                 Click="Button_Click"
                 />
 
+        <Button Content="toControlSwitchSamplePage"
+                Grid.Column="1"
+                Grid.Row="0"
+                Click="Button_Click_1"
+                />
+
     </Grid>
 </Page>

@@ -13,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using WPFTips.ControlSwitchSample;
 using WPFTips.ListViews;
 
 namespace WPFTips {
@@ -26,6 +27,10 @@ namespace WPFTips {
 
         private void Button_Click(object sender, RoutedEventArgs e) {
             this.NavigationService.Navigate(new ListViewPage());
+        }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e) {
+            this.NavigationService.Navigate(new ControlSwitchSamplePage());
         }
     }
 }
