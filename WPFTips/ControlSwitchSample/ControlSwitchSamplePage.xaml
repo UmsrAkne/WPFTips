@@ -17,24 +17,49 @@
             <RowDefinition/>
             <RowDefinition/>
         </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
 
         <Button Content="switchControl"
+                Command="{Binding SwitchCommand}"
                 />
 
         <ContentControl
             Grid.Row="1"
             >
-            <ContentControl.Content>
 
-                <ListView ItemsSource="{Binding Strings}">
-                    <ListView.View>
-                        <GridView>
-                            <GridViewColumn Header="strings"/>
-                        </GridView>
-                    </ListView.View>
-                </ListView>
+            <ContentControl.Style>
+                <Style TargetType="ContentControl">
+                    <Style.Triggers>
 
-            </ContentControl.Content>
+                        <DataTrigger Binding="{Binding RelativeSource={RelativeSource AncestorType=Page},Path=DataContext.DisplayFlag}" Value="False">
+                            <Setter Property="Content">
+                                <Setter.Value>
+                                    <TextBox Background="Blue" />
+                                </Setter.Value>
+                            </Setter>
+                        </DataTrigger>
+
+                        <DataTrigger Binding="{Binding RelativeSource={RelativeSource AncestorType=Page},Path=DataContext.DisplayFlag}" Value="True">
+                            <Setter Property="Content">
+                                <Setter.Value>
+                                    <ListView>
+                                        <ListView.View>
+                                            <GridView>
+                                                <GridViewColumn Header="element"/>
+                                            </GridView>
+                                        </ListView.View>
+                                    </ListView>
+                                </Setter.Value>
+                            </Setter>
+
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </ContentControl.Style>
+
         </ContentControl>
         
     </Grid>
