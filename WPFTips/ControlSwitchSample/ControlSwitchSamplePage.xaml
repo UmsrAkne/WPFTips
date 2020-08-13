@@ -8,7 +8,34 @@
       d:DesignHeight="450" d:DesignWidth="800"
       Title="ControlSwitchSamplePage">
 
+    <Page.DataContext>
+        <local:ControlSwitchSampleViewModel/>
+    </Page.DataContext>
+
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <Button Content="switchControl"
+                />
+
+        <ContentControl
+            Grid.Row="1"
+            >
+            <ContentControl.Content>
+
+                <ListView ItemsSource="{Binding Strings}">
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn Header="strings"/>
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+
+            </ContentControl.Content>
+        </ContentControl>
         
     </Grid>
 </Page>
